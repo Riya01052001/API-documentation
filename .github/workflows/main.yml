@@ -13,13 +13,6 @@ jobs:
       uses: actions/labeler@v2 # Using a community-maintained GitHub Action for labeling issues
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }} # Token to access the repository
-        configuration-path: .github/issue-labels.yml # Path to the label configuration file
-label-1:
-  - issue-name-contains: "bug"
-    label: "bug"
-
-label-2:
-  - issue-body-includes:
-      - "feature request"
-      - "enhancement"
-    label: "enhancement"
+        labels: |
+          bug: issue-name-contains.contains('bug')
+          enhancement: issue-body-includes.contains('feature request') || issue-body-includes.contains('enhancement')
